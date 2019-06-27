@@ -58,6 +58,23 @@
   Message  
   ```
 
+## Random String/Text Generation : endpoint /randomtest /random1k /random1m
+  Various end ponits have been added to generate random string.
+  /randomtest -  It will generate 256KB of random string each time called
+  /random1k   -  It will generate 1KB of random string each time called
+  /random1m   -  It will generate 1MB of random string each time called
+
+## Random String/Text Generation with user specific size : endpont /random
+  If you like to generate a specific size(in bytes) then pass that as a query size param on /random endpoint.
+
+  For Example: to generate 100 bytes of random text, we fire as:
+  ```
+  $ curl http://localhost:8000/random?size=100
+
+  BpLnfgDsc2WD8F2qNfHK5a84jjJkwzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX39IVUWSP2NcHciWvqZTa2N95RxRTZHWUsaD6HEdz0
+  ```
+
+
 # Docker 
 
 How about Docker; Yes... just fire the below and you are all set.
