@@ -59,13 +59,13 @@
   ```
 
 ## Random String/Text Generation : endpoint /randomtest /random1k /random1m
-  Various end ponits have been added to generate random string.
+  Various endpoints have been added to generate random string.
   ```
   /randomtest -  It will generate 256KB of random string each time called
   /random1k   -  It will generate 1KB of random string each time called
   /random1m   -  It will generate 1MB of random string each time called
   ```
-## Random String/Text Generation with user specific size : endpont /random
+## Random String/Text Generation with user specific size : endpoint /random
   If you like to generate a specific size(in bytes) then pass that as a query size param on /random endpoint.
 
   For Example: to generate 100 bytes of random text, we fire as:
@@ -103,6 +103,6 @@ How about Docker; Yes... just fire the below and you are all set.
 
 ## Running Docker container
   ```
-  $ docker run -p 80:8000 gowebsvr -m " Welcome to GoWebSvr ( _/\_ ) "
+  $ docker run -p 80:80 gowebsvr -m " Welcome to GoWebSvr ( _/\_ ) "
   ```
 
