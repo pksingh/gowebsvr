@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"net/http"
 	"net/url"
+	"strconv"
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -117,6 +118,16 @@ func genRandomString1m(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, RandomString(1024*1024))
 }
 
+func genRandomStringSize(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	size, err := strconv.Atoi(query.Get("size"))
+	if err != nil {
+		//log.Printf("Error - Parsing Query Param :: %s\n", err)
+		fmt.Fprintf(w, "Error - Parsing Query Param :: %s\n", err)
+	}
+	io.WriteString(w, RandomString(size))
+}
+
 func main() {
 	port := flag.Int("p", 80, "Port")
 	msg := flag.String("m", "Message", "-m \"Welcome!\"")
@@ -133,6 +144,7 @@ func main() {
 	http.HandleFunc("/randomtest", genRandomString)
 	http.HandleFunc("/random1k", genRandomString1k)
 	http.HandleFunc("/random1m", genRandomString1m)
+	http.HandleFunc("/random", genRandomStringSize)
 
 	//http.ListenAndServe(":80", nil)
 	log.Fatal(http.ListenAndServe(
