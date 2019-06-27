@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
 	"net/url"
 )
@@ -27,6 +28,7 @@ type RequestBody struct {
 	String string
 	// Add other items
 }
+
 // Request is the same as http.Request minus the bits that break json.Marshall
 type Request struct {
 	Method           string
@@ -81,6 +83,40 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(b))
 }
 
+const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+//var seededRand *rand.Rand = rand.New(
+//	rand.NewSource(time.Now().UnixNano()))
+
+// StringWithCharset is used for generating Strings form a charset
+func StringWithCharset(length int, charset string) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[rand.Intn(len(charset))]
+	}
+	return string(b)
+}
+
+// RandomString is used to generate Random String of Length bytes
+func RandomString(length int) string {
+	return StringWithCharset(length, charset)
+}
+
+func genRandomString(w http.ResponseWriter, r *http.Request) {
+
+	io.WriteString(w, RandomString(256*1024))
+}
+
+func genRandomString1k(w http.ResponseWriter, r *http.Request) {
+
+	io.WriteString(w, RandomString(1*1024))
+}
+
+func genRandomString1m(w http.ResponseWriter, r *http.Request) {
+
+	io.WriteString(w, RandomString(1024*1024))
+}
+
 func main() {
 	port := flag.Int("p", 80, "Port")
 	msg := flag.String("m", "Message", "-m \"Welcome!\"")
@@ -93,6 +129,11 @@ func main() {
 	http.HandleFunc("/", hello)
 	http.HandleFunc("/greet", mh.greet)
 	http.HandleFunc("/echo", echo)
+
+	http.HandleFunc("/randomtest", genRandomString)
+	http.HandleFunc("/random1k", genRandomString1k)
+	http.HandleFunc("/random1m", genRandomString1m)
+
 	//http.ListenAndServe(":80", nil)
 	log.Fatal(http.ListenAndServe(
 		fmt.Sprintf(":%v", *port), nil))
