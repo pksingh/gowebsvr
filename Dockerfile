@@ -1,7 +1,7 @@
 FROM scratch
 LABEL maintainer="Prasanta Singh <singh.prasanta@gmail.com>"
 
-COPY ./gowebsvr  .
+COPY gowebsvr  .
 CMD ["./gowebsvr"]
  
 EXPOSE 80
