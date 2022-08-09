@@ -41,6 +41,8 @@ COPY --from=builder /app/server /gowebsvr
 # COPY stagingnode.crt /app
 # COPY prodnode.crt /app
 
+EXPOSE 80
 
 # Run the web service on container startup.
-CMD ["/gowebsvr"]
+# ENTRYPOINT [ "./gowebsvr", "-m", 'Welcome _/\_' ]
+CMD [ "./gowebsvr" ]
