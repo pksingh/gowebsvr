@@ -25,7 +25,7 @@
 ## Serving custome message; use -m "msg"
 
   ```
-  $ ./gowebsvr -p 8000 -m "my greeting msg"
+  $ ./gowebsvr -p 8000 -m " Welcome to GoWebSvr ( _/\_ ) "
   ```
   custome message will be served on '/greet' endpoint
 
@@ -33,9 +33,9 @@
 
   ```
   $ curl http://localhost:8000/greet
-  my greeting msg
+   Welcome to GoWebSvr ( _/\_ ) 
   ```
-  If no -m provided; default message is be "Message"
+  If no -m provided; default message will be "Message"
 
   ```
   $ curl http://localhost:8000/greet
@@ -102,8 +102,8 @@ How about Docker; Yes... just fire the below and you are all set.
   $ docker images | grep "gowebsvr"
   ```
 
-## Running Docker container
+## Running Docker container with different host port 
   ```
-  $ docker run -p 80:80 gowebsvr -m " Welcome to GoWebSvr ( _/\_ ) "
+  $ docker run -p 8000:80 gowebsvr
   ```
 
