@@ -82,7 +82,7 @@
 How about Docker; Yes... just fire the below and you are all set.
 
   ```
-  $ docker run -p 80:8000 pksingh/gowebsvr
+  $ docker run -p 80:80 pksingh/gowebsvr
   ```
   
   Now you can build the docker image too.
