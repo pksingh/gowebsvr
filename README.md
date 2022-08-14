@@ -1,5 +1,8 @@
 # Web Server on GoLang
 
+  Description:
+  Web Server on GoLang -- Echo / Static Text / Random Text
+
 ## Build gowebsvr Server
 
   ```
